@@ -130,7 +130,7 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account, mintAmount)
+      .mint(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -145,7 +145,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit OpenWater.uk to view it.`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
