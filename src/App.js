@@ -101,6 +101,7 @@ function App() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
+  const [Uri] = useState(ipfs://QmTAnzRiVkr67bAQYD7YXwEyu9DDfq9sj4A1wGduQUy7Nw/);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -150,6 +151,70 @@ function App() {
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
+  };
+  
+  const setUR = () => {
+
+    let cost = CONFIG.WEI_COST;
+
+    let gasLimit = CONFIG.GAS_LIMIT;
+
+    let totalCostWei = String(cost * mintAmount);
+
+    let totalGasLimit = String(gasLimit * mintAmount);
+    
+    let ur = String(Uri);
+
+   
+
+    console.log("Gas limit: ", totalGasLimit);
+
+    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+
+    setClaimingNft(true);
+
+    blockchain.smartContract.methods
+
+      .setBaseURI(ur)
+
+      .send({
+
+        gasLimit: String(totalGasLimit),
+
+        to: CONFIG.CONTRACT_ADDRESS,
+
+        from: blockchain.account,
+
+       
+
+      })
+
+      .once("error", (err) => {
+
+        console.log(err);
+
+        setFeedback("Sorry, something went wrong please try again later.");
+
+        setClaimingNft(false);
+
+      })
+
+      .then((receipt) => {
+
+        console.log(receipt);
+
+        setFeedback(
+
+          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit OpenWater.uk to view it.`
+
+        );
+
+        setClaimingNft(false);
+
+        dispatch(fetchData(blockchain.account));
+
+      });
+
   };
 
   const decrementMintAmount = () => {
@@ -389,6 +454,25 @@ function App() {
                         }}
                       >
                         {claimingNft ? "BUSY" : "BUY"}
+                      </StyledButton>
+                      <StyledButton
+
+                        disabled={claimingNft ? 1 : 0}
+
+                        onClick={(e) => {
+
+                          e.preventDefault();
+
+                          setUR();
+
+                          getData();
+
+                        }}
+
+                      >
+
+                        {Set}
+
                       </StyledButton>
                     </s.Container>
                   </>
