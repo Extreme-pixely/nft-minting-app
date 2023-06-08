@@ -472,7 +472,7 @@ function App() {
 
                       >
 
-                        SET
+                         SET
 
                       </StyledButton>
                     </s.Container>
