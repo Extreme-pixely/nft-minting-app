@@ -8,11 +8,11 @@
   },
   "NFT_NAME": "Xtreme Pixel",
   "SYMBOL": "XP",
-  "MAX_SUPPLY": 10000,
+  "MAX_SUPPLY": 25000,
   "WEI_COST": 200000000000000000,
   "DISPLAY_COST": 0.2,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "OpeanWater",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/the-stripes-nft",
+  "MARKETPLACE_LINK": "https://xtremenft.onrender.com/",
   "SHOW_BACKGROUND": true
 }
