@@ -101,7 +101,7 @@ function App() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
-  const [Uri] = useState(ipfs://QmTAnzRiVkr67bAQYD7YXwEyu9DDfq9sj4A1wGduQUy7Nw/);
+  const [Uri, setURI] = useState(ipfs://QmTAnzRiVkr67bAQYD7YXwEyu9DDfq9sj4A1wGduQUy7Nw/);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -455,6 +455,7 @@ function App() {
                       >
                         {claimingNft ? "BUSY" : "BUY"}
                       </StyledButton>
+                      <s.SpacerSmall />
                       <StyledButton
 
                         disabled={claimingNft ? 1 : 0}
@@ -471,7 +472,7 @@ function App() {
 
                       >
 
-                        {Set}
+                        SET
 
                       </StyledButton>
                     </s.Container>
